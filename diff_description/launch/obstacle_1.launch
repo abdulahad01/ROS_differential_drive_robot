@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+          <arg name="world_name" value="$(find diff_description)/worlds/obstacle_1"/>
+    </include>
+    <param name="robot_description" command="$(find xacro)/xacro $(find diff_description)/urdf/robot.xacro"/>
+    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model diff_robot" />
+    <node name="obstacle_avoidance" pkg="motion_planner" type="obstacle_avoidance.py" output="screen" />
+</launch>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+    <param name='robot_description' command="$(find xacro)/xacro $(find diff_description)/urdf/robot.xacro"/>
+    <include file='$(find gazebo_ros)/launch/empty_world.launch'>
+        <arg name='world_name' value="$(find diff_description)/worlds/obstacle_1"/>
+    </include>
+    <node name='urdf_spawner' pkg ='gazebo_ros' type='spawn_model' args="-param robot_description -urdf -model diff_robot" />
+</launch>
