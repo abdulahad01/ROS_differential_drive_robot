@@ -1,9 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <launch>
-    <param name='robot_description' command="$(find xacro)/xacro $(find diff_description)/urdf/robot.xacro"/>
+    <!-- load the obstacle world -->
     <include file='$(find gazebo_ros)/launch/empty_world.launch'>
         <arg name='world_name' value="$(find diff_description)/worlds/obstacle_1"/>
     </include>
-    <node name='urdf_spawner' pkg ='gazebo_ros' type='spawn_model' args="-param robot_description -urdf -model diff_robot" />
+
+    <!-- initialize various arguments for the launch file  -->
+    <arg name="initial_x" default="4" />
+    <arg name="initial_y" default="-1" />
+    <arg name="des_x" default="0" />
+    <arg name="des_y" default="0" />
+
+    <!-- initializing various rosparams -->
+    <param name='robot_description' command="$(find xacro)/xacro $(find diff_description)/urdf/robot.xacro"/>
+    <param name="goal_x" value="$(arg des_x)" />
+    <param name="goal_y" value="$(arg des_y)" />
+
+    <!-- loading the various nodes : urdf spawner, bug0, wall follower and go to goal -->
+    <node name='urdf_spawner' pkg ='gazebo_ros' type='spawn_model' args="-param robot_description -urdf -model diff_robot -x $(arg initial_x) -y $(arg initial_y)" />
+    <node name="bug_0" pkg = 'motion_planner' type='bug_0.py' output='screen'/>
+    <node name="wall_follower" pkg = 'motion_planner' type='wall_follower.py' />
+    <node name="go_to_goal" pkg = 'motion_planner' type='go_to_goal.py' />
+
 </launch>
