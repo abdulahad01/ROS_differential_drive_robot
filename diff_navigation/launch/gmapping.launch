@@ -7,7 +7,7 @@
     <arg name="set_scan_topic" default="/diff_robot/laser/scan"/>
     <arg name="visualize" default="True"/>
     <arg name="config_viz" default="$(find diff_navigation)/rviz/config_rviz.rviz" />
-    <arg name="world" default="$(find diff_description)/worlds/obstacle_1"/>
+    <arg name="world" default="$(find diff_description)/worlds/simple"/>
     <arg name="x" default="0"/>>
     <arg name="y" default="0"/>
     <arg name="z" default="0.5"/>
@@ -37,4 +37,5 @@
       <remap from="scan" to="$(arg set_scan_topic)"/>
       <rosparam command='load' file="$(find diff_navigation)/params/gmapping_params.yaml" />
     </node>
+
   </launch>
