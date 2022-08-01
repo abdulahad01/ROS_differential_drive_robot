@@ -2,9 +2,9 @@
 <launch>
     <!-- Arguments -->
     <arg name="set_base_frame" default="link_chassis"/>
-    <arg name="set_odom_frame" default="diff_robot/odom"/>
+    <arg name="set_odom_frame" default="odom"/>
     <arg name="set_map_frame"  default="map"/>
-    <arg name="set_scan_topic" default="/diff_robot/laser/scan"/>
+    <arg name="scan_topic" default="/diff_robot/laser/scan"/>
     <arg name="visualize" default="True"/>
     <arg name="config_viz" default="$(find diff_navigation)/rviz/config_rviz.rviz" />
     <arg name="world" default="$(find diff_description)/worlds/simple"/>
@@ -34,7 +34,7 @@
       <param name="map_frame"  value="$(arg set_map_frame)"/>
       <param name ="map_update_interval" value ="2.0"/>
       <param name ="maxUrange" value="3.0" />
-      <remap from="scan" to="$(arg set_scan_topic)"/>
+      <remap from="scan" to="$(arg scan_topic)"/>
       <rosparam command='load' file="$(find diff_navigation)/params/gmapping_params.yaml" />
     </node>
 
