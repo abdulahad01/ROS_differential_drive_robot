@@ -1,0 +1,14 @@
+<launch>
+    <arg name="world" default="$(find diff_description)/worlds/simple"/>
+    <arg name="x" default="0"/>>
+    <arg name="y" default="0"/>
+    <arg name="z" default="0.5"/>
+
+    <param name="robot_description" command="$(find xacro)/xacro '$(find diff_description)/urdf/robot.xacro'"/>
+
+    <!-- Gazebo -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch" >
+        <arg name="world_name" value="$(arg world)"/>
+    </include>
+    <node name="urdf_spawner" type="spawn_model" pkg="gazebo_ros" args="-urdf -param robot_description -model robot_model -x $(arg x) -y $(arg y) -z $(arg z)" />
+</launch>
