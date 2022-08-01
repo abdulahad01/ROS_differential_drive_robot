@@ -4,15 +4,23 @@
 2. Wall following
 3. Go to goal
 4. [Bug 0](#bug-0-behaviour)
+5. ROS navigation stack for autonomous navigation namely:
+  5.1 Gmapping
+  5.2 AMCL
+  5.3 Move Base
 
 Last tested on :
 ROS Noetic
 Ubuntu 20.04
 
-for running the simulations copy file to your ros workspace and after running catkin_make, open the terminal and run :
+FOr running the simulations copy file to your ros workspace and after running catkin_make, open the terminal and run :
 
 ```
 $ roslaunch diff_description bug0.launch 
+```
+For autonomous navigation run :
+```
+$ roslaunch diff_navigation diff_robot_navigation.launch
 ```
 ## The Robot 
 Simple 2 wheel drive differential robot, with a hokuyo lidar simulated for range measurements.
