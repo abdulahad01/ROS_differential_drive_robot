@@ -1,0 +1,5 @@
+<launch>
+    <include file="$(find diff_description)/launch/cafe_world.launch" />
+    <include file="$(find diff_rtab)/launch/rtab_mapping.launch" />
+    <include file="$(find diff_rtab)/launch/rtab_viz.launch" />
+</launch>
